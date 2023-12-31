@@ -1,0 +1,18 @@
+{
+  "name": "mongo-blog",
+  "version": "1.0.0",
+  "description": "blog made with mongodb",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "Anson Ash",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  }
+}
