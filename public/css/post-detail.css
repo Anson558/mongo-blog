@@ -1,0 +1,17 @@
+#post-detail {
+    padding: 4rem 7rem;
+}
+
+address {
+    display: inline;
+}
+
+address a {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+time {
+    color: gray;
+}

@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mongo Blog</title>
+    <%- include('includes/head.ejs') %>
+        <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
-    
+    <%- include('includes/nav.ejs') %>
+        <section id="hero">
+            <div>
+                <h1>Blogging for Everyone</h1>
+                <h3>Trusted Blogging Site</h3>
+                <ul>
+                    <li>Free, Always</li>
+                    <li>Hundreds of Blogs</li>
+                    <li>Premium User Interfaces</li>
+                </ul>
+                <a class="button" href="/posts">View All Posts</a>
+            </div>
+            <img src="images/hero.png" alt="img">
+        </section>
 </body>
+
 </html>

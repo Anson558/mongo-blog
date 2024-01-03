@@ -1,0 +1,12 @@
+.post-item {
+    color: white;
+    background-color: var(--secondary);
+    width: 45rem;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 100rem;
+}
+
+.post-item form {
+    display: inline;
+}
