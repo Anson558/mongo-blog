@@ -25,7 +25,7 @@ app.get('/posts', async function (req, res) {
         .getDb()
         .collection('posts')
         .find({})
-        .project({ 
+        .project({
             title: 1,
             summary: 1,
             'author.name': 1
@@ -36,22 +36,30 @@ app.get('/posts', async function (req, res) {
 
 app.get('/posts/:id', async function (req, res) {
     const post = await db.getDb().collection('posts').findOne({ _id: new ObjectId(req.params.id) })
-    res.render('post-detail', {post: post})
+
+    post.humanReadableDate = post.date.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    })
+
+    res.render('post-detail', { post: post })
 })
 
-app.post('/posts/:id/delete', async function(req, res) {
+app.post('/posts/:id/delete', async function (req, res) {
     db.getDb().collection('posts').deleteOne({ _id: new ObjectId(req.params.id) })
     res.redirect('/posts')
 })
 
-app.get('/posts/:id/edit', async function(req, res) {
+app.get('/posts/:id/edit', async function (req, res) {
     const post = await db.getDb().collection('posts').findOne({ _id: new ObjectId(req.params.id) })
     const authors = await db.getDb().collection('authors').find().toArray()
     console.log(authors)
     res.render('update', { authors: authors, post: post })
 })
 
-app.post('/posts/:id/edit', async function(req, res) {
+app.post('/posts/:id/edit', async function (req, res) {
     const authorId = new ObjectId(req.body.author)
     const author = await db.getDb().collection('authors').findOne({ _id: authorId })
 
@@ -61,7 +69,7 @@ app.post('/posts/:id/edit', async function(req, res) {
         content: req.body.content,
     };
 
-    const result = await db.getDb().collection('posts').updateOne({ _id: new ObjectId(req.params.id) }, {$set: newPost})
+    const result = await db.getDb().collection('posts').updateOne({ _id: new ObjectId(req.params.id) }, { $set: newPost })
     console.log(req.params.id)
     res.redirect('/posts')
 })
@@ -69,7 +77,7 @@ app.post('/posts/:id/edit', async function(req, res) {
 app.get('/create', async function (req, res) {
     const authors = await db.getDb().collection('authors').find().toArray()
     console.log(authors)
-    res.render('create', { authors: authors})
+    res.render('create', { authors: authors })
 })
 
 app.post('/create', async function (req, res) {
